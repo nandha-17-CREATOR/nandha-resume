@@ -1,4 +1,4 @@
-```yaml
+
 name: Deploy Resume to AWS EC2
 
 on:
@@ -43,4 +43,3 @@ jobs:
             sudo systemctl reload nginx
 
             echo "Resume deployed successfully!"
-```
