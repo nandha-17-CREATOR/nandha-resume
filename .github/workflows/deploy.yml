@@ -1,0 +1,49 @@
+```yaml
+name: Deploy Resume to AWS EC2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'resume.html'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Resume
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Copy Resume to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "resume.html"
+          target: "/home/ubuntu/deploy-resume/"
+          overwrite: true
+
+      - name: Deploy Resume and Reload Nginx
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+
+            sudo install -D -m 644 \
+              /home/ubuntu/deploy-resume/resume.html \
+              /var/www/resume/index.html
+
+            sudo nginx -t
+            sudo systemctl reload nginx
+
+            echo "Resume deployed successfully!"
+```
