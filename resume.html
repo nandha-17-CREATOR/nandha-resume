@@ -1,187 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subash | Resume</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>D. Nandha — Analytical Chemist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef1e9;
+    --paper:#f7f8f3;
+    --ink:#1c2b22;
+    --sub:#4f5d52;
+    --accent:#3c6e47;
+    --amber:#a3702f;
+    --line:#c9d2c0;
+    color-scheme: light;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#151b16; --paper:#1b231c; --ink:#e9ede6; --sub:#a9b6a9;
+      --accent:#7fbf8e; --amber:#d4a45c; --line:#33402f;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#151b16; --paper:#1b231c; --ink:#e9ede6; --sub:#a9b6a9;
+    --accent:#7fbf8e; --amber:#d4a45c; --line:#33402f;
+  }
+  html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', -apple-system, sans-serif;
+    line-height:1.5;
+  }
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:64px 24px 90px;
+  }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  /* ---- Hero ---- */
+  .hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:22px;
+    margin-bottom:36px;
+  }
+  .hero h1{
+    font-family:'Source Serif 4', Georgia, serif;
+    font-weight:700;
+    font-size:clamp(34px,6vw,52px);
+    margin:0 0 6px 0;
+    letter-spacing:-0.5px;
+  }
+  .hero .role{
+    font-size:16px;
+    color:var(--accent);
+    font-weight:600;
+  }
+  .molecule{ flex-shrink:0; opacity:0.9; }
+  .molecule circle{ fill:var(--paper); stroke:var(--accent); stroke-width:2; }
+  .molecule line{ stroke:var(--line); stroke-width:2; }
+  .molecule .core{ fill:var(--accent); stroke:none; }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f4f8;
-            color: #333;
-            line-height: 1.6;
-        }
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px 18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--sub);
+    margin-bottom:44px;
+  }
 
-        header {
-            background: #17365d;
-            color: white;
-            text-align: center;
-            padding: 35px 20px;
-        }
+  /* ---- Section headers ---- */
+  h2{
+    font-family:'Source Serif 4', Georgia, serif;
+    font-weight:600;
+    font-size:21px;
+    margin:0 0 16px 0;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  h2 .idx{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--amber);
+    font-weight:500;
+  }
+  section{ margin-bottom:40px; }
+  section p{ font-size:15px; color:var(--ink); max-width:64ch; margin:0; }
 
-        header h1 {
-            font-size: 36px;
-            margin-bottom: 8px;
-        }
+  /* ---- Skills ---- */
+  .skills{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px 28px;
+  }
+  .skills dt{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--amber);
+    margin-bottom:5px;
+  }
+  .skills dd{ margin:0; font-size:14px; color:var(--sub); }
 
-        header p {
-            font-size: 17px;
-        }
+  /* ---- Education table ---- */
+  .edu-row{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .edu-row:last-child{ border-bottom:none; }
+  .edu-row .school{ color:var(--sub); font-size:13px; }
+  .edu-row .score{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--sub);
+    white-space:nowrap;
+    text-align:right;
+  }
 
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
+  /* ---- Entries (project / internship) ---- */
+  .entry-title{ font-weight:600; font-size:15.5px; margin-bottom:2px; }
+  .entry-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--amber);
+    margin-bottom:10px;
+  }
+  ul.findings{ margin:0; padding-left:18px; }
+  ul.findings li{ font-size:14px; color:var(--sub); margin-bottom:6px; max-width:60ch; }
 
-        .section {
-            background: white;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-        }
+  /* ---- Certs ---- */
+  .certs{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .certs li{
+    font-size:14px;
+    padding-left:18px;
+    position:relative;
+    color:var(--ink);
+  }
+  .certs li::before{
+    content:"";
+    position:absolute; left:0; top:7px;
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--accent);
+  }
 
-        h2 {
-            color: #17365d;
-            border-bottom: 2px solid #17365d;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-        }
+  footer{
+    border-top:1px solid var(--line);
+    margin-top:16px;
+    padding-top:18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--sub);
+  }
 
-        ul {
-            padding-left: 22px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        .contact p {
-            margin: 5px 0;
-        }
-
-        footer {
-            background: #17365d;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 30px;
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 28px;
-            }
-
-            .section {
-                padding: 18px;
-            }
-        }
-    </style>
+  @media (max-width:560px){
+    .hero{ flex-direction:column; align-items:flex-start; }
+    .skills{ grid-template-columns:1fr; }
+    .molecule{ width:64px; height:64px; }
+  }
+</style>
 </head>
-
 <body>
+<div class="wrap">
 
-    <header>
-        <h1>Nandha</h1>
-        <p>DevOps & Cloud Engineering Enthusiast</p>
-        <p>Aspiring IT Professional</p>
-    </header>
-
-    <div class="container">
-
-        <section class="section contact">
-            <h2>Contact Information</h2>
-            <p><strong>Email:</strong>nandha7081@gmail.com</p>
-            <p><strong>Phone:</strong> 9629087081</p>
-            <p><strong>Location:</strong> Tamil Nadu, India</p>
-        </section>
-
-        <section class="section">
-            <h2>Professional Summary</h2>
-            <p>
-                Motivated fresher transitioning into the IT industry
-                with an interest in DevOps and Cloud Engineering.
-                Currently learning Linux, AWS, Nginx, shell scripting,
-                and web server deployment through hands-on projects.
-                Eager to develop practical technical skills and grow
-                as an IT professional.
-            </p>
-        </section>
-
-        <section class="section">
-            <h2>Technical Skills</h2>
-            <ul>
-                <li><strong>Cloud:</strong> AWS EC2 basics</li>
-                <li><strong>Operating System:</strong> Linux, Ubuntu</li>
-                <li><strong>Web Server:</strong> Nginx</li>
-                <li><strong>Scripting:</strong> Bash basics</li>
-                <li><strong>Web Technologies:</strong> HTML, CSS</li>
-                <li><strong>Deployment:</strong> Static website hosting</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Projects</h2>
-
-            <h3>AWS EC2 HTML Website Deployment</h3>
-            <ul>
-                <li>Created an Ubuntu EC2 instance on AWS.</li>
-                <li>Installed and configured the Nginx web server.</li>
-                <li>Hosted a static HTML website on the server.</li>
-                <li>Configured website files and basic permissions.</li>
-            </ul>
-
-            <br>
-
-            <h3>Linux Service Monitoring Script</h3>
-            <ul>
-                <li>Created a Bash script to check service status.</li>
-                <li>Used variables, for loops, and if-else conditions.</li>
-                <li>Practised checking services such as Nginx and SSH.</li>
-                <li>Explored scheduling tasks using cron.</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Education</h2>
-            <h3>B.Sc. Chemistry</h3>
-            <p>Update your college name and graduation year here.</p>
-        </section>
-
-        <section class="section">
-            <h2>Learning & Development</h2>
-            <ul>
-                <li>AWS cloud fundamentals</li>
-                <li>Linux commands and file permissions</li>
-                <li>Nginx configuration and web hosting</li>
-                <li>Bash scripting and cron jobs</li>
-                <li>Basic networking and website deployment</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2>Career Objective</h2>
-            <p>
-                To begin my career in IT by applying my technical
-                knowledge, improving my cloud and Linux skills,
-                and contributing to real-world technology projects.
-            </p>
-        </section>
-
+  <div class="hero">
+    <div>
+      <h1>D. Nandha</h1>
+      <div class="role">Analytical Chemist — Green Synthesis &amp; Quality Control</div>
     </div>
+    <svg class="molecule" width="84" height="84" viewBox="0 0 84 84">
+      <line x1="42" y1="42" x2="42" y2="12"/>
+      <line x1="42" y1="42" x2="68" y2="57"/>
+      <line x1="42" y1="42" x2="16" y2="57"/>
+      <circle cx="42" cy="12" r="8"/>
+      <circle cx="68" cy="57" r="8"/>
+      <circle cx="16" cy="57" r="8"/>
+      <circle class="core" cx="42" cy="42" r="9"/>
+    </svg>
+  </div>
 
-    <footer>
-        <p>&copy; 2026 Nandha | Resume</p>
-    </footer>
+  <div class="contact-row">
+    <span>Orathanadu, Thanjavur, TN</span>
+    <span>+91 96290 87081</span>
+    <span>nandha7081@gmail.com</span>
+    <span>Tamil &amp; English</span>
+  </div>
 
+  <section>
+    <h2><span class="idx">01</span>Summary</h2>
+    <p>B.Sc. Chemistry graduate and certified Health Inspector with hands-on expertise in green nanoparticle synthesis, chemical analysis — volumetric, gravimetric, and organic — and anti-corrosion techniques. Proficient in lab safety protocols, sanitation standards, and quality documentation. Seeking a Chemist role in pharma, R&amp;D, or quality control.</p>
+  </section>
+
+  <section>
+    <h2><span class="idx">02</span>Technical Skills</h2>
+    <dl class="skills">
+      <div><dt>Analytical Techniques</dt><dd>Volumetric analysis, gravimetric analysis, organic preparation &amp; analysis, nanoparticle synthesis</dd></div>
+      <div><dt>Laboratory Skills</dt><dd>Chemical handling, lab safety protocols, anti-corrosion techniques, green chemistry</dd></div>
+      <div><dt>Healthcare &amp; Compliance</dt><dd>Health inspection, sanitation standards, public health guidelines, medical surveillance</dd></div>
+      <div><dt>Software &amp; Soft Skills</dt><dd>MS Word, MS Excel, leadership, teamwork</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <h2><span class="idx">03</span>Education</h2>
+    <div class="edu-row">
+      <div>B.Sc. Chemistry<br><span class="school">A.V.V.M. Sri Pushpam College, Bharathidasan University</span></div>
+      <div class="score">2026<br>74%</div>
+    </div>
+    <div class="edu-row">
+      <div>Health Inspector Certification<br><span class="school">The Kavery Institute of Health Science, Salem (MRB)</span></div>
+      <div class="score">2023<br>70%</div>
+    </div>
+    <div class="edu-row">
+      <div>HSC — State Board<br><span class="school">London Krishnamoorthi Matric HSS, Orathanadu</span></div>
+      <div class="score">2020<br>66%</div>
+    </div>
+    <div class="edu-row">
+      <div>SSLC — State Board<br><span class="school">Laurel Matric HSS, Pattukkottai</span></div>
+      <div class="score">2018<br>88%</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="idx">04</span>Academic Project</h2>
+    <div class="entry-title">Green Synthesis of MgO Nanoparticles Using Solanum Nigrum Leaf Extract</div>
+    <ul class="findings">
+      <li>Synthesized MgO nanoparticles via eco-friendly green chemistry using Solanum nigrum leaf extract.</li>
+      <li>Characterized particles by UV-Vis, FTIR, and XRD, confirming reproducible synthesis across 3 batches.</li>
+      <li>Evaluated antimicrobial and photocatalytic properties for future green-synthesis applications.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="idx">05</span>Internship &amp; Laboratory Training</h2>
+    <div class="entry-title">Anti-Corrosive Techniques — Industrial Training</div>
+    <div class="entry-meta">2023</div>
+    <ul class="findings">
+      <li>Applied anti-corrosion coating methods and evaluated metal durability via weight-loss and electrochemical tests.</li>
+      <li>Performed volumetric, gravimetric, and qualitative organic analyses with accurate documentation and SOP compliance.</li>
+      <li>Conducted functional-group identification and prepared structured laboratory reports under faculty supervision.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="idx">06</span>Certifications &amp; Training</h2>
+    <ul class="certs">
+      <li>Health Inspector Certification — The Kavery Institute of Health Science, MRB (2023)</li>
+      <li>Specialized training in chemical handling, lab safety &amp; analysis techniques</li>
+    </ul>
+  </section>
+
+  <footer>D. Nandha — nandha7081@gmail.com — Orathanadu, Thanjavur</footer>
+
+</div>
 </body>
 </html>
